@@ -49,3 +49,7 @@ func AdminMiddleware() fiber.Handler {
 func UserMiddleware() fiber.Handler {
 	return AuthMiddleware("user")
 }
+
+func SuperAdminMiddleware() fiber.Handler {
+	return AuthMiddleware("super_admin")
+}
