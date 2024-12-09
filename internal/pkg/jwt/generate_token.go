@@ -10,7 +10,7 @@ import (
 
 func GenerateAccessToken(userLogin *domain.Users) (string, error) {
 
-	expireTime := time.Now().Add(time.Hour * 12).Unix()
+	expireTime := time.Now().Add(time.Hour * 48).Unix()
 	claims := jwt.NewWithClaims(jwt.SigningMethodHS256,jwt.MapClaims{
 		"exp":expireTime,
 		"username":userLogin.Username, 

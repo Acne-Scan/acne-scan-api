@@ -7,6 +7,8 @@ type HistoryResponse struct {
 	User_id        uint   `json:"user_id"`
 	Name           string `json:"name"`
 	Image          string `json:"image" form:"image"`
+	UserPicture    string `json:"user_picture"`
+	ProductLink    string `json:"product_links"`
 	Prediction     string `json:"prediction"`
 	Recommendation string `json:"recommendation"`
 
