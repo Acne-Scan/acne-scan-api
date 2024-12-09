@@ -10,12 +10,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v0
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with: 
+        service_account: 'app-engine-deployer@acnescan-final.iam.gserviceaccount.com'
+        credentials_json: '${{ secrets.GOOGLE_CLOUD_KEY }}'
 
-    - name: Authenticate to Google Cloud
-      run: |
-        gcloud auth activate-service-account --key-file=${{ secrets.GOOGLE_CLOUD_KEY }}
+    - name: Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
 
     - name: Deploy to App Engine
       run: |
