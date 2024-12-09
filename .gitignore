@@ -10,7 +10,7 @@
 # acne-scan-bucket.json
 acne-scan-db.json
 .env
-app.yaml
+# app.yaml
 start.sh
 # Test binary, built with `go test -c`
 *.test

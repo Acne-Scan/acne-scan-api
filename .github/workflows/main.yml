@@ -10,15 +10,30 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    # Authenticate using service account
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
       with: 
         service_account: 'app-engine-deployer@acnescan-final.iam.gserviceaccount.com'
         credentials_json: '${{ secrets.GOOGLE_CLOUD_KEY }}'
 
+    # Set environment variables
+    - name: Set environment variables
+      run: |
+        echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+        echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+        echo "DB_PORT=${{ secrets.DB_PORT }}" >> $GITHUB_ENV
+        echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+        echo "BUCKET_NAME=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
+        echo "GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_CLOUD_KEY }}" >> $GITHUB_ENV
+
+    # Set up Google Cloud SDK
     - name: Setup Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v2
 
+    # Deploy to Google App Engine
     - name: Deploy to App Engine
       run: |
-        gcloud app deploy ./acne-scan-api/app.yaml
+        gcloud app deploy app.yaml --quiet
