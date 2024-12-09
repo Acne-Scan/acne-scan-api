@@ -19,17 +19,10 @@ jobs:
 
     # Set environment variables
     - name: Deploy to Google App Engine
-      env:
-        DB_USERNAME: ${{ secrets.DB_USERNAME }}
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        DB_NAME: ${{ secrets.DB_NAME }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       run:
-        gcloud app deploy --quiet
+        gcloud app deploy --quiet \
+         --set-env-vars DB_USERNAME=${{ secrets.DB_USERNAME }},DB_HOST=${{ secrets.DB_HOST }},DB_PORT=${{ secrets.DB_PORT }},DB_NAME=${{ secrets.DB_NAME }},DB_PASSWORD=${{ secrets.DB_PASSWORD }},JWT_SECRET=${{ secrets.JWT_SECRET }},BUCKET_NAME=${{ secrets.BUCKET_NAME }},GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
 
 
     # # Set up Google Cloud SDK
