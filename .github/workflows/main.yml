@@ -17,22 +17,17 @@ jobs:
         service_account: 'acne-scan-app-engine-service-a@acnescan-final.iam.gserviceaccount.com'
         credentials_json: '${{ secrets.GOOGLE_CLOUD_KEY }}'
 
-    - name: Generate app.yaml
+    - name: Inject secrets into app.yaml
       run: |
-        cat <<EOF > app.yaml
-        runtime: custom
-        env: flex
-
-        env_variables:
-          DB_USERNAME: "${{ secrets.DB_USERNAME }}"
-          DB_HOST: "${{ secrets.DB_HOST }}"
-          DB_PORT: "${{ secrets.DB_PORT }}"
-          DB_NAME: "${{ secrets.DB_NAME }}"
-          DB_PASSWORD: "${{ secrets.DB_PASSWORD }}"
-          JWT_SECRET: "${{ secrets.JWT_SECRET }}"
-          BUCKET_NAME: "${{ secrets.BUCKET_NAME }}"
-          GOOGLE_APPLICATION_CREDENTIALS: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}"
-        EOF
+        echo "env_variables:" >> app.yaml
+        echo "  DB_USERNAME: '${{ secrets.DB_USERNAME }}'" >> app.yaml
+        echo "  DB_HOST: '${{ secrets.DB_HOST }}'" >> app.yaml
+        echo "  DB_PORT: '${{ secrets.DB_PORT }}'" >> app.yaml
+        echo "  DB_NAME: '${{ secrets.DB_NAME }}'" >> app.yaml
+        echo "  DB_PASSWORD: '${{ secrets.DB_PASSWORD }}'" >> app.yaml
+        echo "  JWT_SECRET: '${{ secrets.JWT_SECRET }}'" >> app.yaml
+        echo "  BUCKET_NAME: '${{ secrets.BUCKET_NAME }}'" >> app.yaml
+        echo "  GOOGLE_APPLICATION_CREDENTIALS: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'" >> app.yaml
 
     - name: Deploy to App Engine
       run: gcloud app deploy app.yaml --quiet
