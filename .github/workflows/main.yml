@@ -21,4 +21,5 @@ jobs:
 
     - name: Deploy to App Engine
       run: |
+        cd acne-scan-api
         gcloud app deploy app.yaml
