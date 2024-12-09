@@ -27,7 +27,7 @@ jobs:
         echo "  DB_PASSWORD: '${{ secrets.DB_PASSWORD }}'" >> app.yaml
         echo "  JWT_SECRET: '${{ secrets.JWT_SECRET }}'" >> app.yaml
         echo "  BUCKET_NAME: '${{ secrets.BUCKET_NAME }}'" >> app.yaml
-        echo "  GOOGLE_APPLICATION_CREDENTIALS: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'" >> app.yaml
+        echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" | sed 's/^/    /' >> app.yaml 
 
     - name: Deploy to App Engine
       run: gcloud app deploy app.yaml --quiet
