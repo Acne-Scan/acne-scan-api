@@ -19,20 +19,20 @@ jobs:
 
     - name: Generate app.yaml
       run: |
-          cat <<EOF > app.yaml
-          runtime: custom
-          env: flex
+        cat <<EOF > app.yaml
+        runtime: custom
+        env: flex
 
-          env_variables:
-            DB_USERNAME: "${{ secrets.DB_USERNAME }}"
-            DB_HOST: "${{ secrets.DB_HOST }}"
-            DB_PORT: "${{ secrets.DB_PORT }}"
-            DB_NAME: "${{ secrets.DB_NAME }}"
-            DB_PASSWORD: "${{ secrets.DB_PASSWORD }}"
-            JWT_SECRET: "${{ secrets.JWT_SECRET }}"
-            BUCKET_NAME: "${{ secrets.BUCKET_NAME }}"
-            GOOGLE_APPLICATION_CREDENTIALS: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}"
-          EOF
+        env_variables:
+          DB_USERNAME: "${{ secrets.DB_USERNAME }}"
+          DB_HOST: "${{ secrets.DB_HOST }}"
+          DB_PORT: "${{ secrets.DB_PORT }}"
+          DB_NAME: "${{ secrets.DB_NAME }}"
+          DB_PASSWORD: "${{ secrets.DB_PASSWORD }}"
+          JWT_SECRET: "${{ secrets.JWT_SECRET }}"
+          BUCKET_NAME: "${{ secrets.BUCKET_NAME }}"
+          GOOGLE_APPLICATION_CREDENTIALS: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}"
+        EOF
 
     - name: Deploy to App Engine
       run: gcloud app deploy app.yaml --quiet
