@@ -21,4 +21,4 @@ jobs:
 
     - name: Deploy to App Engine
       run: |
-        cgcloud app deploy ./acne-scan-api/app.yaml
+        gcloud app deploy ./acne-scan-api/app.yaml
