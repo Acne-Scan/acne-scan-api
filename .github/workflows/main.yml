@@ -1,0 +1,22 @@
+name: Deploy to App Engine
+
+on:
+  push:
+    branches: [main] # Deploy on pushes to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0
+
+    - name: Authenticate to Google Cloud
+      run: |
+        gcloud auth activate-service-account --key-file=${{ secrets.GOOGLE_CLOUD_KEY }}
+
+    - name: Deploy to App Engine
+      run: |
+        gcloud app deploy app.yaml
