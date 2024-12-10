@@ -16,6 +16,12 @@ import (
 func main() {
 	fiber := fiber.New()
 
+	fiber.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}))
+
 	config, err := configs.LoadConfig()
 	if err != nil {
 		logrus.Fatal("Error loading config:", err.Error())
@@ -34,11 +40,11 @@ func main() {
 
 	// fiber.Use(cors.New())
 
-	fiber.Use(cors.New(cors.Config{
-		AllowOrigins:     "*",   
-		AllowMethods: "GET,POST,PUT,DELETE",
-		AllowHeaders: "Origin, Content-Type, Accept",
-	}))
+	// fiber.Use(cors.New(cors.Config{
+	// 	AllowOrigins: "*",
+	// 	AllowMethods: "GET,POST,PUT,DELETE",
+	// 	AllowHeaders: "Origin, Content-Type, Accept",
+	// }))
 
 	fiber.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
