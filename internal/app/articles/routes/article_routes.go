@@ -1,8 +1,6 @@
 package routes
 
 import (
-	"acne-scan-api/internal/middleware"
-
 	"github.com/gofiber/fiber/v2"
 )
 
