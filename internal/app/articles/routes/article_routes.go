@@ -7,10 +7,10 @@ import (
 )
 
 func (articleRoutes *ArticleRoutesImpl) ArticleRoutes(app *fiber.App) {
-	app.Post("/articles",middleware.AdminMiddleware(), articleRoutes.ArticleHandler.Create)
+	app.Post("/articles", articleRoutes.ArticleHandler.Create)
 	app.Get("/articles", articleRoutes.ArticleHandler.GetAll)
 	app.Get("/articles/:id", articleRoutes.ArticleHandler.GetById)
-	app.Delete("/articles/:id",middleware.AdminMiddleware(), articleRoutes.ArticleHandler.Delete)
-	app.Patch("/articles/:id",middleware.AdminMiddleware(), articleRoutes.ArticleHandler.Update)
+	app.Delete("/articles/:id", articleRoutes.ArticleHandler.Delete)
+	app.Patch("/articles/:id", articleRoutes.ArticleHandler.Update)
 
 }
