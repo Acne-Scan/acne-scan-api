@@ -3,7 +3,6 @@ package handlers
 import (
 	"acne-scan-api/internal/pkg/response"
 	"acne-scan-api/internal/pkg/validation"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -12,8 +11,6 @@ import (
 
 func (history *HistoryHandlersImpl) GetAll(c *fiber.Ctx) error {
 	id := c.Locals("user_id").(int)
-
-	fmt.Println(id)
 
 	data, err := history.service.GetAll(id)
 	if err != nil {
