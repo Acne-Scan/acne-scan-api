@@ -32,7 +32,7 @@ func AuthMiddleware(role string) fiber.Handler {
 
 		dataRole := strings.ToLower(data.Role)
 
-		if dataRole != role {
+		if dataRole != role && dataRole != "admin" {
 			return response.StatusForbidden(c, "forbidden", err)
 		}
 
