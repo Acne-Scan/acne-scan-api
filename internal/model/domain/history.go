@@ -6,7 +6,7 @@ type Images map[string]string
 type ProductLink map[string]interface{}
 
 type History struct {
-	HistoryId      int         `json:"history_id"`
+	HistoryId      string         `json:"history_id"`
 	User_id        uint        `json:"user_id"`
 	Name           string      `json:"name"`
 	UserPicture    string      `json:"user_picture"`

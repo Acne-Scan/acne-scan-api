@@ -3,7 +3,7 @@ package domain
 import "time"
 
 type ProductRecommendation struct {
-	RecommendationId int       `json:"recommendation_id"`
+	RecommendationId string       `json:"recommendation_id"`
 	Image            string    `json:"image" form:"image"`
 	Link             string    `json:"link"`
 	Description      string    `json:"description"`

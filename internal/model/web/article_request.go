@@ -3,7 +3,7 @@ package web
 import "time"
 
 type ArticleCreateRequest struct {
-	ArticleId   int       `form:"article_id"`
+	ArticleId   string       `form:"article_id"`
 	Name        string    `form:"name"`
 	Image       string    `form:"image"`
 	Description string    `form:"description" validate:"required"`
