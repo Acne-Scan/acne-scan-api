@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 func (articleService *ArticleServiceImpl) Create(request web.ArticleCreateRequest, image *multipart.FileHeader, c *fiber.Ctx) error {
@@ -45,9 +46,13 @@ func (articleService *ArticleServiceImpl) Create(request web.ArticleCreateReques
 		return fmt.Errorf("error loading WIB location: %s", err.Error())
 	}
 
+	//generate random id
+	randomID := uuid.New().String()
+
 	createdAt := time.Now().In(wib)
 	article.CreatedAt = createdAt
 	article.UpdatedAt = createdAt
+	article.ArticleId = randomID
 
 	err = articleService.ArticleRepository.Create(article)
 	if err != nil {

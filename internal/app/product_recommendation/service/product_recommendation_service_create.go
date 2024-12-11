@@ -9,6 +9,7 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 func (pr *ProductRecommendationServiceImpl) Create(productRecommendation web.ProductRecommendationRequest,image *multipart.FileHeader,c *fiber.Ctx) error {
@@ -46,9 +47,13 @@ func (pr *ProductRecommendationServiceImpl) Create(productRecommendation web.Pro
 		return fmt.Errorf("error loading WIB location: %s", err.Error())
 	}
 
+	//generate random id
+	randomID := uuid.New().String()
+
 	createdAt := time.Now().In(wib)
 	conv.CreatedAt = createdAt
 	conv.UpdatedAt = createdAt
+	conv.RecommendationId = randomID
 
 	err = pr.ProductRecommendationRepository.Create(conv)
 	if err != nil {

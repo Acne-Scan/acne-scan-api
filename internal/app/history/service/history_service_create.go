@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 func (history *HistoryServiceImpl) Create(c *fiber.Ctx, request *web.HistoryRequest, historyJson []byte, image *multipart.FileHeader, productLinkJson []byte, userId int) error {
@@ -47,9 +48,14 @@ func (history *HistoryServiceImpl) Create(c *fiber.Ctx, request *web.HistoryRequ
 		return fmt.Errorf("error loading WIB location: %s", err.Error())
 	}
 
+	//generate random id
+	randomID := uuid.New().String()
+
 	createdAt := time.Now().In(wib)
 	historyConv.CreatedAt = createdAt
 	historyConv.UpdatedAt = createdAt
+	historyConv.HistoryId = randomID
+
 
 	err = history.HistoryRepository.Create(historyConv, historyJson, productLinkJson, userId)
 	if err != nil {
