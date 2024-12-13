@@ -14,7 +14,7 @@ import (
 type HistoryService interface {
 	Create(c *fiber.Ctx, request *web.HistoryRequest, historyJson []byte,image *multipart.FileHeader, productLinkJson []byte, userid string) error
 	GetById(id string) (*domain.History, error)
-	GetAll(id string) ([]*domain.History, error)
+	GetAll(id int) ([]*domain.History, error)
 }
 
 type HistoryServiceImpl struct {

@@ -10,7 +10,7 @@ import (
 )
 
 func (history *HistoryHandlersImpl) GetAll(c *fiber.Ctx) error {
-	id := c.Locals("user_id").(string)
+	id := c.Locals("user_id").(int)
 
 	data, err := history.service.GetAll(id)
 	if err != nil {
