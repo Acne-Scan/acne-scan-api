@@ -60,3 +60,6 @@ migrate -database "mysql://root:@tcp(localhost:3306)/acne_scan" -path internal/i
 ```
 migrate create -ext sql -dir internal/infrastructure/database/migrations (namafile).sql
 ```
+
+## API Docs
+``` https://acne-scan-api.postman.co/workspace/acne-scan-api-Workspace~ac33a853-4123-47ef-a28e-6e4ce7043bd5/collection/26211928-cad79b08-d5d8-43f4-90a1-d67840212e73?action=share&creator=26211928&active-environment=26211928-3be2084b-1e3d-4ad2-9a97-935eb2fac948
