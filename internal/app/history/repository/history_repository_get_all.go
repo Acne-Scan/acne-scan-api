@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func (history *HistoryRepositoryImpl) GetAll(id int) ([]*domain.History, error) {
+func (history *HistoryRepositoryImpl) GetAll(id string) ([]*domain.History, error) {
 
 	result := []*domain.History{}
 

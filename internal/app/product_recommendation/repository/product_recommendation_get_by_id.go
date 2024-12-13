@@ -4,7 +4,7 @@ import (
 	"acne-scan-api/internal/model/domain"
 )
 
-func (pr *ProductRecommendationImpl) GetById(id int) (*domain.ProductRecommendation, error) {
+func (pr *ProductRecommendationImpl) GetById(id string) (*domain.ProductRecommendation, error) {
 
 	result := domain.ProductRecommendation{}
 

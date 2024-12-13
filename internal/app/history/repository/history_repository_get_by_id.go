@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func (history *HistoryRepositoryImpl) GetById(id int) (*domain.History, error) {
+func (history *HistoryRepositoryImpl) GetById(id string) (*domain.History, error) {
 	result := domain.History{}
 
 	var imageData []byte

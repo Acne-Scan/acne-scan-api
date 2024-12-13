@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (history *HistoryServiceImpl) GetAll(id int) ([]*domain.History, error) {
+func (history *HistoryServiceImpl) GetAll(id string) ([]*domain.History, error) {
 	data, err := history.HistoryRepository.GetAll(id)
 	if err != nil || data == nil {
 		return nil, fmt.Errorf("history not found %s", err.Error())

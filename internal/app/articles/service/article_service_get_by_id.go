@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (articleService *ArticleServiceImpl) GetById(id int) (*domain.Article, error) {
+func (articleService *ArticleServiceImpl) GetById(id string) (*domain.Article, error) {
 
 	data, err := articleService.ArticleRepository.GetById(id)
 	if err != nil || data == nil {

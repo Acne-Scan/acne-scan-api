@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func (articleService *ArticleServiceImpl) Update(description, image string, id int) error {
+func (articleService *ArticleServiceImpl) Update(name,description, image string, id string) error {
 	ifExist, err := articleService.ArticleRepository.GetById(id)
 	if err != nil {
 		return fmt.Errorf("failed to find article:%s", err.Error())
@@ -24,7 +24,7 @@ func (articleService *ArticleServiceImpl) Update(description, image string, id i
 	now := time.Now().In(wib)
 	updatedAt := now
 
-	err = articleService.ArticleRepository.Update(description, image, id, updatedAt)
+	err = articleService.ArticleRepository.Update(name,description, image, id, updatedAt)
 	if err != nil {
 		return fmt.Errorf("error when updating : %s", err.Error())
 	}

@@ -4,7 +4,6 @@ import (
 	"acne-scan-api/internal/pkg/response"
 	"acne-scan-api/internal/pkg/validation"
 	"net/http"
-	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,12 +11,11 @@ import (
 
 func (history *HistoryHandlersImpl) GetById(c *fiber.Ctx) error {
 	idparam := c.Params("id")
-	id, err := strconv.Atoi(idparam)
-	if err != nil {
-		return response.BadRequest(c, "invalid history users id", err)
+	if idparam == "" {
+		return response.BadRequest(c, "invalid history users id", nil)
 	}
 
-	data, err := history.service.GetById(id)
+	data, err := history.service.GetById(idparam)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation") {
 			return validation.ValidationError(c, err)

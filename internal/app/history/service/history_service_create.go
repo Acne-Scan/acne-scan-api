@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func (history *HistoryServiceImpl) Create(c *fiber.Ctx, request *web.HistoryRequest, historyJson []byte, image *multipart.FileHeader, productLinkJson []byte, userId int) error {
+func (history *HistoryServiceImpl) Create(c *fiber.Ctx, request *web.HistoryRequest, historyJson []byte, image *multipart.FileHeader, productLinkJson []byte, userId string) error {
 	var err error
 
 	err = history.Validator.Struct(request)

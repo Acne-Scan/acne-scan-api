@@ -8,10 +8,10 @@ import (
 
 type ArticleRepository interface {
 	Create(article *domain.Article)error
-	Update(description,image string, id int,updatedAt time.Time)error
-	Delete(id int)error
+	Update(name,description,image string, id string,updatedAt time.Time)error
+	Delete(id string)error
 	GetAll()([]domain.Article,error)
-	GetById(id int)(*domain.Article,error)
+	GetById(id string)(*domain.Article,error)
 }
 
 type ArticleRepositoryImpl struct{

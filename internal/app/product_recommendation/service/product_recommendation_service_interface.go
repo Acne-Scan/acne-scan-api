@@ -14,9 +14,9 @@ import (
 type ProductRecommendationService interface {
 	Create(pr web.ProductRecommendationRequest,image *multipart.FileHeader,c *fiber.Ctx) error
 	GetAll() ([]domain.ProductRecommendation, error)
-	Delete(id int) error
-	GetById(id int) (*domain.ProductRecommendation, error)
-	Update(article *web.ProductRecommendationUpdateRequest, id int) error
+	Delete(id string) error
+	GetById(id string) (*domain.ProductRecommendation, error)
+	Update(article *web.ProductRecommendationUpdateRequest, id string) error
 }
 
 type ProductRecommendationServiceImpl struct {

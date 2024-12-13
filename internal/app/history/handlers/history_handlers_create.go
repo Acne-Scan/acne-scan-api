@@ -25,7 +25,7 @@ func (history *HistoryHandlersImpl) Create(c *fiber.Ctx) error {
 		}
 	}
 
-	userId := c.Locals("user_id").(int)
+	userId := c.Locals("user_id").(string)
 
 	if err := c.BodyParser(req); err != nil {
 		fmt.Println(err.Error())

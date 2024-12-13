@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func (articleRepository *ArticleRepositoryImpl) Update(description, image string, id int, updatedAt time.Time) error {
+func (articleRepository *ArticleRepositoryImpl) Update(name,description, image string, id string, updatedAt time.Time) error {
 	  // Base query
     query := "UPDATE article SET "
     updates := []string{}
@@ -16,6 +16,11 @@ func (articleRepository *ArticleRepositoryImpl) Update(description, image string
     if image != "" {
         updates = append(updates, "image = ?")
         values = append(values, image)
+    }
+
+    if name != "" {
+        updates = append(updates, "name = ?")
+        values = append(values, name)
     }
 
     if description != "" {

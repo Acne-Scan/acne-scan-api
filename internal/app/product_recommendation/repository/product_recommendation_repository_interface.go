@@ -9,9 +9,9 @@ import (
 type ProductRecommendationRepository interface {
 	Create(productRecommendation *domain.ProductRecommendation) error
 	GetAll() ([]domain.ProductRecommendation, error)
-	Delete(id int)error
-	GetById(id int) (*domain.ProductRecommendation,error)
-	Update(recommendation *web.ProductRecommendationUpdateRequest, id int) error
+	Delete(id string)error
+	GetById(id string) (*domain.ProductRecommendation,error)
+	Update(recommendation *web.ProductRecommendationUpdateRequest, id string) error
 }
 
 type ProductRecommendationImpl struct {

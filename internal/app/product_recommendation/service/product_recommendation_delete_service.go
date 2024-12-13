@@ -2,7 +2,7 @@ package service
 
 import "fmt"
 
-func (pr *ProductRecommendationServiceImpl) Delete(id int) error {
+func (pr *ProductRecommendationServiceImpl) Delete(id string) error {
 
 	ifExist, _ := pr.ProductRecommendationRepository.GetById(id)
 	if ifExist == nil {

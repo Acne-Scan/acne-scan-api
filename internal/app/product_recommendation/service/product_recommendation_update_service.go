@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func (pr *ProductRecommendationServiceImpl) Update(article *web.ProductRecommendationUpdateRequest, id int) error {
+func (pr *ProductRecommendationServiceImpl) Update(article *web.ProductRecommendationUpdateRequest, id string) error {
 	ifExist, err := pr.ProductRecommendationRepository.GetById(id)
 	if err != nil {
 		return fmt.Errorf("failed to find product recommendation:%s", err.Error())

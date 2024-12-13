@@ -4,7 +4,7 @@ import (
 	"acne-scan-api/internal/model/domain"
 )
 
-func (articleRepository *ArticleRepositoryImpl) GetById(id int) (*domain.Article, error) {
+func (articleRepository *ArticleRepositoryImpl) GetById(id string) (*domain.Article, error) {
 
 	result := domain.Article{}
 

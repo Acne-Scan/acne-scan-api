@@ -12,6 +12,7 @@ type ArticleCreateRequest struct {
 }
 
 type ArticleUpdateRequest struct {
+	Name       string    `form:"name"`
 	Image       string    `form:"image"`
 	Description string    `form:"description"`
 	UpdatedAt   time.Time `form:"updated_at"`

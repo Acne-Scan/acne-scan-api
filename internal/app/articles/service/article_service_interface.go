@@ -14,9 +14,9 @@ import (
 type ArticleService interface {
 	Create(request web.ArticleCreateRequest, image *multipart.FileHeader,c *fiber.Ctx) error 
 	GetAll()([]domain.Article,error)
-	GetById(id int)(*domain.Article,error)
-	Delete(id int)(error)
-	Update(description,image string, id int)(error)
+	GetById(id string)(*domain.Article,error)
+	Delete(id string)(error)
+	Update(name,description,image string, id string)(error)
 }
 
 type ArticleServiceImpl struct{

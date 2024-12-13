@@ -3,7 +3,6 @@ package handlers
 import (
 	"acne-scan-api/internal/pkg/response"
 	"acne-scan-api/internal/pkg/validation"
-	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -11,12 +10,11 @@ import (
 
 func (pr *ProductRecommendationHandlerImpl) Delete(c *fiber.Ctx) error{
 	idparam := c.Params("id")
-	id, err := strconv.Atoi(idparam)
-	if err != nil {
-		return response.BadRequest(c, "invalid recommendation id", err)
+	if idparam=="" {
+		return response.BadRequest(c, "invalid product recommendation id", nil)
 	}
 
-	err = pr.productRecommendationService.Delete(id)
+	err := pr.productRecommendationService.Delete(idparam)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation") {
 			return validation.ValidationError(c, err)

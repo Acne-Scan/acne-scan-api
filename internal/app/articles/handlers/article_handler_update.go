@@ -4,7 +4,7 @@ import (
 	"acne-scan-api/internal/model/web"
 	"acne-scan-api/internal/pkg/response"
 	"acne-scan-api/internal/pkg/validation"
-	"strconv"
+	"fmt"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,22 +12,22 @@ import (
 
 func (articleHandler *ArticleHandlerImpl) Update(c *fiber.Ctx) error {
 	idparam := c.Params("id")
-	id, err := strconv.Atoi(idparam)
-	if err != nil {
-		return response.BadRequest(c, "invalid article id", err)
+	if idparam=="" {
+		return response.BadRequest(c, "invalid article id", nil)
 	}
 
 	req:=new(web.ArticleUpdateRequest)
-	if err := c.BodyParser(&req); err != nil {
+	if err := c.BodyParser(req); err != nil {
+		fmt.Println(err.Error())
 		return response.BadRequest(c, "failed to bind article request", err)
 	}
 
-	ifExist,err:=articleHandler.ArticleService.GetById(id)
+	ifExist,err:=articleHandler.ArticleService.GetById(idparam)
 	if ifExist==nil {
 		return response.BadRequest(c, "cannot found article to update", err)
 	}
 
-	err=articleHandler.ArticleService.Update(req.Description,req.Image,id)
+	err=articleHandler.ArticleService.Update(req.Name,req.Description,req.Image,idparam)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation") {
 			return validation.ValidationError(c, err)

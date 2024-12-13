@@ -4,7 +4,6 @@ import (
 	"acne-scan-api/internal/model/web"
 	"acne-scan-api/internal/pkg/response"
 	"acne-scan-api/internal/pkg/validation"
-	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,14 +11,13 @@ import (
 
 func (pr *ProductRecommendationHandlerImpl) Update(c *fiber.Ctx) error {
 	idparam := c.Params("id")
-	id, err := strconv.Atoi(idparam)
-	if err != nil {
-		return response.BadRequest(c, "invalid product recommendation id", err)
+	if idparam=="" {
+		return response.BadRequest(c, "invalid product recommendation id", nil)
 	}
 
-	ifExist, err := pr.productRecommendationService.GetById(id)
+	ifExist, err := pr.productRecommendationService.GetById(idparam)
 	if ifExist == nil {
-		return response.BadRequest(c, "cannot found article to update", err)
+		return response.BadRequest(c, "cannot found product recommendation to update", err)
 	}
 
 	req := new(web.ProductRecommendationUpdateRequest)
@@ -27,7 +25,7 @@ func (pr *ProductRecommendationHandlerImpl) Update(c *fiber.Ctx) error {
 		return response.BadRequest(c, "failed to bind product recommendation request", err)
 	}
 
-	err = pr.productRecommendationService.Update(req, id)
+	err = pr.productRecommendationService.Update(req, idparam)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation") {
 			return validation.ValidationError(c, err)

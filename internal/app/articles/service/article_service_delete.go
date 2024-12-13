@@ -2,7 +2,7 @@ package service
 
 import "fmt"
 
-func (articleService *ArticleServiceImpl) Delete(id int) error {
+func (articleService *ArticleServiceImpl) Delete(id string) error {
 
 	ifExist, err := articleService.ArticleRepository.GetById(id)
 	if err != nil {

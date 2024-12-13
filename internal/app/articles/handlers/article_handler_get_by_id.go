@@ -4,7 +4,6 @@ import (
 	"acne-scan-api/internal/pkg/response"
 	"acne-scan-api/internal/pkg/validation"
 	"net/http"
-	"strconv"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,12 +11,11 @@ import (
 
 func (articleHandler *ArticleHandlerImpl) GetById(c *fiber.Ctx) error {
 	idparam := c.Params("id")
-	id, err := strconv.Atoi(idparam)
-	if err != nil {
-		return response.BadRequest(c, "invalid article id", err)
+	if idparam=="" {
+		return response.BadRequest(c, "invalid article id", nil)
 	}
 
-	data, err := articleHandler.ArticleService.GetById(id)
+	data, err := articleHandler.ArticleService.GetById(idparam)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation") {
 			return validation.ValidationError(c, err)

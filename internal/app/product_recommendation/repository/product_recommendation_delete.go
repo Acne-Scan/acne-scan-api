@@ -2,7 +2,7 @@ package repository
 
 import "fmt"
 
-func (pr *ProductRecommendationImpl) Delete(id int) error {
+func (pr *ProductRecommendationImpl) Delete(id string) error {
 	result, err := pr.DB.Exec("delete from pruduct_recommendation where recommendation_id=?", id)
 	if err != nil {
 		return err
