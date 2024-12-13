@@ -42,7 +42,7 @@ To run the AcneScan backend locally, follow these steps:
 
    ```bash
    git clone https://github.com/yourusername/acnescan-backend.git
-   cd acnescan-backend
+   cd acne-scan-api
 2. Install Dependency
    ```bash
    go mod tidy
