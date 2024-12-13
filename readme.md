@@ -1,6 +1,7 @@
+![](AcneScanFinal.png)
 # AcneScan Backend
 
-This repository is the server-side component of the AcneScan mobile application, which helps users identify acne types and receive personalized skincare recommendations using machine learning.
+This repository is the server-side component of the AcneScan mobile application, which users can read the articles and receive personalized skincare recommendations.
 
 ---
 
@@ -43,12 +44,14 @@ To run the AcneScan backend locally, follow these steps:
    git clone https://github.com/yourusername/acnescan-backend.git
    cd acnescan-backend
 2. Install Dependency
-go mod tidy
+   ```bash
+   go mod tidy
 
 3. set up environment database
    
 5. Run the application locally:
-go run main.go
+      ```bash
+      go run main.go
 
 ## Migration
 ```
